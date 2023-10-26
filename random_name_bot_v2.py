@@ -7,7 +7,7 @@ intents.presences = False
 intents.message_content = True
 
 # Your Discord bot token
-TOKEN = 'MTE2NjcyMDc5NzQ3ODUwNjU4OA.G5M-pb.K2vCRna4CGhKxnnsIVMarQPs9oyeSL5laXMHcg'
+TOKEN = ''
 
 # Initialize the bot
 bot = discord.Client(intents=intents)
