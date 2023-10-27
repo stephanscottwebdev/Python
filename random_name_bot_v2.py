@@ -9,11 +9,10 @@ intents.presences = False
 intents.message_content = True
 
 # Your Discord bot token
-TOKEN = 'MTE2NjcyMDc5NzQ3ODUwNjU4OA.GfKSSo.FQ9K-QNbIksccf5WqlPvp5nRjSaICwvr8afAv8'
+TOKEN = ''
 
 # Initialize the bot
 bot = discord.Client(intents=intents)
-bot2 = commands.Bot(command_prefix='!', intents=intents)
 
 # List of random names/weapons
 names = ["Ash", "Balistic", "Bangalore", "Bloodhound", "Catalyst", "Caustic", "Crypto", "Fuse", "Gibraltar", "Horizon",
@@ -26,18 +25,7 @@ weapon = ["Havoc", "Flatline", "Hemlock", "R-301", "Nemesis", "Alternator", "R-9
 # Items in the crafter:
 #"30-30" "Bocek" "Prowler" "L-Star" "RE-45"
 #"Conduit"
-"""
-@bot2.command()
-async def call(ctx, user: discord.User):
-    if user:
-        # Get the username of the user who sent the command
-        calling_user = ctx.message.author.name
 
-        # Send a message that mentions the specified user and includes the caller's username
-        await ctx.send(f"Hey, {calling_user}! You fucking cutie!")
-    else:
-        await ctx.send("Nar.")
-"""
 @bot.event
 async def on_ready():
     print(f'Logged in as {bot.user.name}')
