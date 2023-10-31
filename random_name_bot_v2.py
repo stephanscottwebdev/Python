@@ -9,10 +9,11 @@ intents.presences = False
 intents.message_content = True
 
 # Your Discord bot token
-TOKEN = ''
+TOKEN = 'MTE2NjcyMDc5NzQ3ODUwNjU4OA.GkoEmp.7Ekx79mv2m5okpTKg1UduNcbve8QpNUfurS_3M'
 
 # Initialize the bot
 bot = discord.Client(intents=intents)
+bot2 = commands.Bot(command_prefix='!', intents=intents)
 
 # List of random names/weapons
 names = ["Ash", "Balistic", "Bangalore", "Bloodhound", "Catalyst", "Caustic", "Crypto", "Fuse", "Gibraltar", "Horizon",
@@ -33,7 +34,7 @@ async def on_ready():
 @bot.event
 async def on_message(message):
     #print(f"Message received: {message.content}")
-    user_name = message.author.nick if message.author.nick else message.author.name
+    user_name = message.author.display_name if message.author.display_name else message.author.name
     if message.content.startswith('!bot'):
         await message.channel.send(f'What up, {user_name}!? Here are my commands. Type: !r for a random Champion. !w for random guns. !a for both a random Champion and weapons. !z if you are lazy and need the next 3 Champions chosen for you. !tmb IYKYK.')
 
@@ -44,23 +45,26 @@ async def on_message(message):
 
     if message.content.startswith('!w'):
         #print("Command !w recognized")
-        random_weapon = random.choice(weapon)
-        random_weapon2  = random.choice(weapon)
-        await message.channel.send(f'You so bad with that roller movement {user_name}, use a {random_weapon} and a {random_weapon2} to make up for it. You\'ll probably wiff your shots anyway.')
+        num_weapons = 2  # Number of random weapons to generate
+        random_weapon = random.sample(weapon, num_weapons)
+        #random_weapon2  = random.choice(weapon)
+        await message.channel.send(f'You so bad with that roller movement {user_name}, use a ' + ' and a '.join(random_weapon) + ' to make up for it. You\'ll probably wiff your shots anyway.')
     
     if message.content.startswith('!a'):
         #print("Command !a recognized")
         random_name = random.choice(names)
-        random_weapon = random.choice(weapon)
-        random_weapon2  = random.choice(weapon)
-        await message.channel.send(f'Ok {user_name} you big ol\' cutie! Your champion is {random_name}. Try using a {random_weapon} and a {random_weapon2} this game! K BYYYYYYYYYYE!!')
+        num_weapons = 2  # Number of random weapons to generate
+        random_weapon = random.sample(weapon, num_weapons)
+        await message.channel.send(f'Ok {user_name} you big ol\' cutie! Your champion is {random_name}. Try using a ' + ' and a ' .join(random_weapon) + ' this game! K BYYYYYYYYYYE!!')
 
     if message.content.startswith('!z'):
         #print("Command !a recognized")
-        random_name = random.choice(names)
-        random_name2 = random.choice(names)
-        random_name3 = random.choice(names)
-        await message.channel.send(f'Ok, {user_name} you lazy ass. Here are your next three Champions: {random_name}, {random_name2}. and {random_name3}. Ya biiiiiiiitch.')    
+        num_names = 3  # Number of random names to generate
+        random_name = random.sample(names, num_names)
+        #random_name = random.choice(names)
+        #random_name2 = random.choice(names)
+        #random_name3 = random.choice(names)
+        await message.channel.send(f'Ok, {user_name} you lazy ass. Here are your next three Champions: ' + ', '.join(random_name) + '. Ya biiiiiiiitch.')  
 
     if message.content.startswith('!tmb'):
         await message.channel.send(f'UwU (⑅˘꒳˘)☞ (‿|‿) ԅ(≖‿≖ԅ)')
