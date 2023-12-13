@@ -9,23 +9,22 @@ intents.presences = False
 intents.message_content = True
 
 # Your Discord bot token
-TOKEN = 'MTE2NjcyMDc5NzQ3ODUwNjU4OA.Gzy9Dn.32LVr4_0w7dW-vs2m3PkQ_lbXu2gj-Z4FhMPHg'
+TOKEN = 'MTE2NjcyMDc5NzQ3ODUwNjU4OA.GB6eeM.i-4sD2BvzgaU6D9K8v3EhRa_iH4STU54ddXats'
 
 # Initialize the bot
 bot = discord.Client(intents=intents)
 bot2 = commands.Bot(command_prefix='!', intents=intents)
 
 # List of random names/weapons
-names = ["Ash", "Balistic", "Bangalore", "Bloodhound", "Catalyst", "Caustic", "Crypto", "Fuse", "Gibraltar", "Horizon",
+names = ["Ash", "Balistic", "Bangalore", "Bloodhound", "Catalyst", "Caustic", "Conduit", "Crypto", "Fuse", "Gibraltar", "Horizon",
 		"Lifeline", "Loba", "Maggie", "Mirage", "Newcastle", "Octane", "Pathfinder", "Rampart", "Revenant", "Seer", "Valkyrie",
 		"Vantage", "Watson", "Wraith"]
-weapon = ["Havoc", "Flatline", "Hemlock", "R-301", "Nemesis", "Alternator", "R-99", "Volt", "C.A.R.", "Devotion",
+weapon = ["30-30", "Havoc", "Flatline", "Hemlock", "R-301", "Nemesis", "Alternator", "R-99", "Volt", "C.A.R.", "Devotion",
         "Spitfire", "Rampage", "G7 Scout", "Triple Take", "Charge Rifle", "Longbow", "Sentinal",
-        "EVA-8", "Mastiff", "Mozambique", "Peacekeeper", "P2020", "Wingman"]
+        "EVA-8", "Mastiff", "Mozambique", "Peacekeeper", "P2020", "RE-45", "L-Star"]
 
 # Items in the crafter:
-#"30-30" "Bocek" "Prowler" "L-Star" "RE-45"
-#"Conduit"
+# "Bocek" "Prowler" "Wingman"
 
 @bot.event
 async def on_ready():
@@ -40,6 +39,7 @@ async def on_message(message):
 
     if message.content == '!r':
         #print("Command !r recognized")
+        #num_names = 3  # Number of random names to generate
         random_name = random.choice(names)
         await message.channel.send(f'Daaaaang, {user_name} you cute as SHIT! Your random champion is {random_name}. Clap some cheeks baby!')
 
@@ -47,9 +47,8 @@ async def on_message(message):
         #print("Command !w recognized")
         num_weapons = 2  # Number of random weapons to generate
         random_weapon = random.sample(weapon, num_weapons)
-        #random_weapon2  = random.choice(weapon)
         await message.channel.send(f'You so bad with that roller movement {user_name}, use a ' + ' and a '.join(random_weapon) + ' to make up for it. You\'ll probably wiff your shots anyway.')
-    
+
     if message.content == '!a':
         #print("Command !a recognized")
         random_name = random.choice(names)
@@ -61,13 +60,13 @@ async def on_message(message):
         #print("Command !a recognized")
         num_names = 3  # Number of random names to generate
         random_name = random.sample(names, num_names)
-        #random_name = random.choice(names)
-        #random_name2 = random.choice(names)
-        #random_name3 = random.choice(names)
         await message.channel.send(f'Ok, {user_name} you lazy ass. Here are your next three Champions: ' + ', '.join(random_name) + '. Ya biiiiiiiitch.')  
 
-    if message.content.startswith('!tmb'):
-        await message.channel.send(f'UwU (⑅˘꒳˘)☞ (‿|‿) ԅ(≖‿≖ԅ)')
- 
+    if message.content == '!tmb':
+        await message.channel.send(f'(⑅˘꒳˘)☞ (‿|‿) ԅ(≖‿≖ԅ)')
+
+    if message.content == '!uWu':
+        await message.channel.send(f'🥺 👉👈')
+
 # Start the bot
 bot.run(TOKEN)
